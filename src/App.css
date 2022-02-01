@@ -6,7 +6,59 @@
     animation-duration: 1s;
 }
 
-.logo {
-    font-family: 'Mouse Memoirs', sans-serif;
+.sectionBorder {
+    width: 0;
+    height: 0;
+}
+
+.sectionBorder-top {
+    border-bottom: 50px solid;
+    border-left: 100vw solid transparent;
+}
+
+.sectionBorder-top-secondary {
+    border-bottom-color: #9c27b0;
+}
+
+.sectionBorder-top-warning {
+    border-bottom-color: #ed6c02;
+}
+
+.sectionBorder-btm {
+    border-top: 50px solid;
+    border-right: 100vw solid transparent;
+}
+
+.sectionBorder-btm-secondary {
+    border-top-color: #9c27b0;
+}
+
+.sectionBorder-btm-warning {
+    border-top-color: #ed6c02;
+}
+
+.home-flyImg {
+    height: 500px;
+    aspect-ratio: 1/3;
+    background: url('https://source.unsplash.com/cm0eSVxdLDg/640x960');
+    background-position: center;
+    transform: translateY(-25px) skew(-10deg);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);
+}
+
+.home-stayImg {
+    height: 300px;
+    transform: rotate(-10deg);
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);
+    align-self: center;
+}
+
+.home-planImg {
+    height: 300px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    align-self: center;
 }
 

@@ -3,7 +3,7 @@ import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Container, Ty
 function Cards() {
     return (
         <Container
-          sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridGap: '2em'}} 
+          sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridGap: '2em', pb: '2em'}} 
           width='100%'
         >
           <Card raised >

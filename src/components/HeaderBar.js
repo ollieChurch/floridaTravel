@@ -5,8 +5,28 @@ import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
 import AttractionsOutlinedIcon from '@mui/icons-material/AttractionsOutlined';
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
+import { useState } from "react";
 
 function HeaderBar() {
+  const [navItems] = useState([
+    {
+      icon: <FlightTakeoffIcon sx={{marginRight: '.25em'}} />,
+      text: 'fly'
+    },
+    {
+      icon: <HotelOutlinedIcon sx={{marginRight: '.25em'}} />,
+      text: 'stay'
+    },
+    {
+      icon: <AttractionsOutlinedIcon sx={{marginRight: '.25em'}} />,
+      text: 'play'
+    },
+    {
+      icon: <DateRangeOutlinedIcon sx={{marginRight: '.25em'}} />,
+      text: 'plan'
+    },
+  ])
+
   return (
     <AppBar>
       <Toolbar>
@@ -25,18 +45,9 @@ function HeaderBar() {
           direction={'row'} 
           divider={<Divider orientation="vertical" flexItem color={'white'} />}
         >
-          <MenuItem>
-            <FlightTakeoffIcon sx={{marginRight: '.25em'}} /> fly
-          </MenuItem>
-          <MenuItem>
-            <HotelOutlinedIcon sx={{marginRight: '.25em'}} /> stay
-          </MenuItem>
-          <MenuItem>
-            <AttractionsOutlinedIcon sx={{marginRight: '.25em'}} /> play
-          </MenuItem>
-          <MenuItem>
-            <DateRangeOutlinedIcon sx={{marginRight: '.25em'}} /> plan
-          </MenuItem>
+          {navItems.map((item, index) => {
+            return <MenuItem key={`navItem-${index}`}>{item.icon} {item.text}</MenuItem>
+          })}
         </Stack>
       </Toolbar>
     </AppBar>

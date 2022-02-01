@@ -3,18 +3,29 @@ import { Box, Container, Fade, Typography } from "@mui/material"
 
 function HeroImg() {
     const [images] = useState([
-        'iLsw_pvpF1s',
-        'SE5mmOZWqHE',
-        'RRXWkVqq9xU',
-        'lwnAz-uauDc'
+        {
+            id: 'iLsw_pvpF1s',
+            alt: 'diagon alley at Universal Islands Of Adventure'
+        },
+        {
+            id: 'SE5mmOZWqHE',
+            alt: 'an alien in the cockpit of a Star Wards spaceship'
+        },
+        {
+            id: 'RRXWkVqq9xU',
+            alt: 'A paddle boat waits at the dock'
+        },
+        {
+            id: 'lwnAz-uauDc',
+            alt: 'two people watch fireworks at Disney Boardwalk'
+        }
     ])
+
     const [currentImg, setCurrentImg] = useState(0)
     const [fadedIn, setFadedIn] = useState(true)
 
     useEffect(() => {
-        const heroInterval = setTimeout(() => {
-            setFadedIn(false)
-        }, 8000)
+        const heroInterval = setTimeout(() => setFadedIn(false), 8000)
         return () => clearTimeout(heroInterval)
     }, [currentImg, images])
 
@@ -33,11 +44,11 @@ function HeroImg() {
             position='relative'
             bgcolor='rgba(129, 165, 201)'
         >
-            <Fade in={fadedIn} appear timeout={500} easing='cubic-bezier(0.4, 0, 0.2, 1)' addEndListener={changeHeroImg} >
+            <Fade in={fadedIn} appear timeout={500} addEndListener={changeHeroImg} >
                 <img 
                     className={`heroImg`}
-                    src={`https://source.unsplash.com/${images[currentImg]}/5183x3456`} 
-                    alt=''
+                    src={`https://source.unsplash.com/${images[currentImg].id}/5183x3456`} 
+                    alt={images[currentImg].alt}
                     onLoad={() => setFadedIn(true)}
                 />
             </Fade>
@@ -50,9 +61,7 @@ function HeroImg() {
                 top='0'
                 left='0'
             >
-                <Container
-                    sx={{height: '100%', display: 'flex', alignItems: 'center'}}
-                >
+                <Container sx={{height: '100%', display: 'flex', alignItems: 'center'}} >
                     <Typography
                         variant='h2'
                         component='h1'

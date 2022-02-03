@@ -1,4 +1,5 @@
 import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Container, Typography } from "@mui/material"
+import { Link } from 'react-router-dom'
 
 function Cards({cardData}) {
     return (
@@ -12,10 +13,10 @@ function Cards({cardData}) {
                         <CardActionArea>
                             <CardHeader title={card.title} />
                             <CardMedia
-                            component='img'
-                            height='175'
-                            image={`https://source.unsplash.com/${card.imgId}/640x345`}
-                            alt={card.imgAlt}
+                                component='img'
+                                height='175'
+                                image={`https://source.unsplash.com/${card.imgId}/640x345`}
+                                alt={card.imgAlt}
                             />
                             <CardContent>
                                 <Typography>{card.text}</Typography>

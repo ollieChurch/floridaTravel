@@ -6,6 +6,11 @@
     animation-duration: 1s;
 }
 
+.sectionBorder-container {
+    overflow: hidden;
+    max-width: 100%;
+}
+
 .sectionBorder {
     width: 0;
     height: 0;

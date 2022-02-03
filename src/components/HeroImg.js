@@ -23,33 +23,46 @@ function HeroImg() {
 
     const [currentImg, setCurrentImg] = useState(0)
     const [fadedIn, setFadedIn] = useState(true)
+    const [imgLoaded, setImgLoaded] = useState(true)
 
     useEffect(() => {
-        const heroInterval = setTimeout(() => setFadedIn(false), 8000)
-        return () => clearTimeout(heroInterval)
-    }, [currentImg, images])
+        const fadeOutInterval = setTimeout(() => {
+            setFadedIn(false)
+        }, 8000)
+        return () => clearTimeout(fadeOutInterval)
+    }, [currentImg])
+
+    useEffect(() => {
+        if (!imgLoaded) {
+            const fadeInInterval = setTimeout(() => {
+                setFadedIn(true)
+                setImgLoaded(true)
+            }, 1000)
+            return () => clearTimeout(fadeInInterval)
+        }
+    }, [imgLoaded])
 
     function changeHeroImg() {
         if (!fadedIn) { 
             const newImg = currentImg < images.length - 1 ? currentImg + 1 : 0
-            setCurrentImg(newImg) 
+            setCurrentImg(newImg)
+            setImgLoaded(false) 
         }
     }
 
     return (
         <Box
-            height='75vh'
+            height='80vh'
             objectFit='cover'
             overflow='hidden'
             position='relative'
             bgcolor='rgba(129, 165, 201)'
         >
-            <Fade in={fadedIn} appear timeout={500} addEndListener={changeHeroImg} >
+            <Fade in={fadedIn} appear timeout={750} addEndListener={changeHeroImg} >
                 <img 
                     className={`heroImg`}
                     src={`https://source.unsplash.com/${images[currentImg].id}/5183x3456`} 
                     alt={images[currentImg].alt}
-                    onLoad={() => setFadedIn(true)}
                 />
             </Fade>
 

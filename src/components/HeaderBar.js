@@ -1,11 +1,12 @@
 import Toolbar from "@mui/material/Toolbar"
 import AppBar from "@mui/material/AppBar"
-import {Divider, MenuItem, Stack, Typography } from "@mui/material"
+import { Divider, MenuItem, Stack, Typography } from "@mui/material"
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
 import AttractionsOutlinedIcon from '@mui/icons-material/AttractionsOutlined';
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
 import { useState } from "react";
+import { Link } from 'react-router-dom'
 
 function HeaderBar() {
   const [navItems] = useState([
@@ -30,23 +31,30 @@ function HeaderBar() {
   return (
     <AppBar>
       <Toolbar>
-        <Typography
-          component='div'
-          variant='h4'
-          sx={{
-            marginRight: '.5em',
-            fontFamily: "'Mouse Memoirs', sans-serif"
-          }}
-        >
-          Orlando Travel Club
-        </Typography>
+          <Typography
+            component={Link}
+            to='/'
+            variant='h4'
+            sx={{
+              marginRight: '.5em',
+              fontFamily: "'Mouse Memoirs', sans-serif",
+              textDecoration: 'unset',
+              color: 'inherit'
+            }}
+          >
+            Orlando Travel Club
+          </Typography>        
         <Stack 
           spacing={2} 
           direction={'row'} 
           divider={<Divider orientation="vertical" flexItem color={'white'} />}
         >
           {navItems.map((item, index) => {
-            return <MenuItem key={`navItem-${index}`}>{item.icon} {item.text}</MenuItem>
+            return (
+              <MenuItem key={`navItem-${index}`} component={Link} to={`/${item.text}`}>
+                {item.icon} {item.text}
+              </MenuItem>
+            )
           })}
         </Stack>
       </Toolbar>

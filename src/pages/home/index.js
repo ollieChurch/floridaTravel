@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { Button, Container, Typography, Box, useTheme } from '@mui/material';
+import { Button, Container, Typography, Box } from '@mui/material';
 import Cards from '../../components/Cards';
 import ColorSection from '../../components/ColorSection';
 import HeroImg from '../../components/HeroImg';
-import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom'
 
 function Home() {
@@ -27,7 +26,6 @@ function Home() {
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lectus nisi, imperdiet eu nibh non, venenatis commodo urna. Quisque sed risus in orci feugiat sollicitudin ac a velit. '
     }
   ])
-  const theme = useTheme()
 
   return (
     <>
@@ -44,7 +42,7 @@ function Home() {
 
       <Cards cardData={homeCardsData} />
 
-      <ColorSection>
+      <ColorSection maxHeight='400px'>
         <Box height='400px' sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'}}>
           <Typography variant='h4' component='h3'>Travel Like A Pro</Typography>
           <Typography>

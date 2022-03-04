@@ -57,3 +57,12 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
 }
 
+.flyBgd {
+    background: url('https://source.unsplash.com/YvCg5X3pWzc/4096x2730');
+    min-height: 40vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+

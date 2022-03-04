@@ -1,26 +1,38 @@
-import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Container, Typography } from "@mui/material"
-import { Link } from 'react-router-dom'
+import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Container, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { useLocation } from "react-router-dom"
+// import { Link } from 'react-router-dom'
 
 function Cards({cardData}) {
+    const {pathname} = useLocation()
+    const bp700 = useMediaQuery('(min-width:700px)')
+    const style = {
+        display: 'flex',
+        flexFlow: 'row wrap',
+        justifyContent: 'space-evenly',
+        gap: '2em',
+        pb: '2em'
+    }
+
     return (
-        <Container
-          sx={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridGap: '2em', pb: '2em'}} 
-          width='100%'
-        >                
-            {cardData.map(card => {
+        <Container sx={style}>                
+            {cardData.map((card, index) => {
                 return (
-                    <Card key={`card-${card.title}`} raised >
+                    <Card key={`card-${pathname}-${index}`} raised sx={{maxWidth: bp700 ? '300px' : '100%'}}>
                         <CardActionArea>
-                            <CardHeader title={card.title} />
-                            <CardMedia
-                                component='img'
-                                height='175'
-                                image={`https://source.unsplash.com/${card.imgId}/640x345`}
-                                alt={card.imgAlt}
-                            />
-                            <CardContent>
-                                <Typography>{card.text}</Typography>
-                            </CardContent>
+                            {card.title && <CardHeader title={card.title} />}
+                            {card.imgId && 
+                                <CardMedia
+                                    component='img'
+                                    height='175'
+                                    image={`https://source.unsplash.com/${card.imgId}/640x345`}
+                                    alt={card.imgAlt}
+                                />
+                            }
+                            {card.text && 
+                                <CardContent>
+                                    <Typography>{card.text}</Typography>
+                                </CardContent>
+                            }
                         </CardActionArea>
                     </Card>
                 )

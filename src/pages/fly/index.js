@@ -22,7 +22,7 @@ function Fly() {
     return (
         <>  
             <Box pb='2em'>
-                <div className='flyBgd'>
+                <div className='pageImgHeader flyBgd'>
                     <ImgOverlay color='rgba(255, 255, 255, .45)' />
                 </div>
             </Box>
@@ -52,6 +52,7 @@ function Fly() {
                     </Container>
                 </Box>
             </ColorSection>
+            
             <Container>
                 <Typography py='2em'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque faucibus arcu vitae nibh mattis, id porta ligula dictum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean commodo eros turpis, in ornare purus pharetra eget. Nam eget nunc est. Donec dictum nulla mi, non ultricies leo euismod sed. Donec commodo mi porttitor, mollis nulla ut, blandit libero. Nam tristique lacus neque, at fermentum mauris maximus id. Etiam dapibus ex eget justo interdum faucibus. Quisque non diam a ligula euismod gravida sit amet nec massa.

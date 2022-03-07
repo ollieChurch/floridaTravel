@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Container, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { Card, CardActionArea, CardContent, CardHeader, CardMedia, Container, Typography, useMediaQuery } from "@mui/material"
 import { useLocation } from "react-router-dom"
 // import { Link } from 'react-router-dom'
 

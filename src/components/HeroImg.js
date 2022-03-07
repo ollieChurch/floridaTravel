@@ -1,58 +1,68 @@
 import { useState, useEffect } from "react"
 import { Box, Container, Fade, Typography } from "@mui/material"
+import ImgOverlay from "./ImgOverlay"
 
 function HeroImg() {
     const [images] = useState([
-        'iLsw_pvpF1s',
-        'SE5mmOZWqHE',
-        'RRXWkVqq9xU',
-        'lwnAz-uauDc'
+        {
+            id: 'iLsw_pvpF1s',
+            alt: 'diagon alley at Universal Islands Of Adventure'
+        },
+        {
+            id: 'SE5mmOZWqHE',
+            alt: 'an alien in the cockpit of a Star Wars spaceship'
+        },
+        {
+            id: 'LNjWPNL1ZkQ',
+            alt: 'Jurassic Park entrance gates'
+        },
+        {
+            id: 'lwnAz-uauDc',
+            alt: 'two people watch fireworks at Disney Boardwalk'
+        }
     ])
+
     const [currentImg, setCurrentImg] = useState(0)
     const [fadedIn, setFadedIn] = useState(true)
+    const [imgLoaded, setImgLoaded] = useState(false)
 
     useEffect(() => {
-        const heroInterval = setTimeout(() => {
-            setFadedIn(false)
-        }, 8000)
-        return () => clearTimeout(heroInterval)
-    }, [currentImg, images])
+        if (imgLoaded) {
+            const fadeOutInterval = setTimeout(() => {
+                setFadedIn(false)
+            }, 8000)
 
-    function changeHeroImg() {
-        if (!fadedIn) { 
-            const newImg = currentImg < images.length - 1 ? currentImg + 1 : 0
-            setCurrentImg(newImg) 
+            return () => clearTimeout(fadeOutInterval)
+        } else {
+            setCurrentImg(prevImg => prevImg < images.length - 1 ? prevImg + 1 : 0)
+
+            const fadeInInterval = setTimeout(() => {
+                setFadedIn(true)
+                setImgLoaded(true)
+            }, 1000)
+
+            return () => clearTimeout(fadeInInterval)
         }
-    }
+    }, [imgLoaded, images.length])
 
     return (
         <Box
-            height='75vh'
+            height='80vh'
             objectFit='cover'
             overflow='hidden'
             position='relative'
             bgcolor='rgba(129, 165, 201)'
         >
-            <Fade in={fadedIn} appear timeout={500} easing='cubic-bezier(0.4, 0, 0.2, 1)' addEndListener={changeHeroImg} >
+            <Fade in={fadedIn} appear timeout={750} addEndListener={() => setImgLoaded(prevState => !prevState)} >
                 <img 
                     className={`heroImg`}
-                    src={`https://source.unsplash.com/${images[currentImg]}/5183x3456`} 
-                    alt=''
-                    onLoad={() => setFadedIn(true)}
+                    src={`https://source.unsplash.com/${images[currentImg].id}/5183x3456`} 
+                    alt={images[currentImg].alt}
                 />
             </Fade>
 
-            <Box
-                position='absolute'
-                width='100%'
-                height='100%'
-                bgcolor='rgba(0, 0, 0, .5)'
-                top='0'
-                left='0'
-            >
-                <Container
-                    sx={{height: '100%', display: 'flex', alignItems: 'center'}}
-                >
+            <ImgOverlay>
+                <Container sx={{height: '100%', display: 'flex', alignItems: 'center'}} >
                     <Typography
                         variant='h2'
                         component='h1'
@@ -65,7 +75,7 @@ function HeroImg() {
                         today!
                     </Typography>
                 </Container>
-            </Box>
+            </ImgOverlay>
       </Box>
     )
 }
